@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+<!-- Add additional CSS in static file -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% load static %}
+<img src="{% static 'catalog/images/local_library_model_uml.png' %}" alt="UML diagram" style="width:555px;height:540px;">
+
+{% block content %}
+  <h1>HRS Home</h1>
+  <p>Welcome to Hotel Recommendation system, a website developed by <em>Jaskirat Singh</em>!</p>
+  <h2>Project MM802</h2>
+  <p>Fetch Data from Views:</p>
+  <ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Copies:</strong> {{ num_instances }}</li>
+    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  </ul>
+{% endblock %}
