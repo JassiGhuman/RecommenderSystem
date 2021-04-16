@@ -1,0 +1,55 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+{% block content %}
+  <div class="about-section">
+  <h1>About Us Page</h1>
+  <br/>
+  <p>MM802: Multimedia Communications Project</p>
+</div>
+
+<h2 style="text-align:left">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="C:\Users\jaski\Downloads\UofA\Courses\MM802_MULTIMEDIA COMMUNICATIONS\Assignments\Project\SourceCode\HRS\catalog\static\images\profile.jpg" alt="Jaskirat" style="width:100%">
+      <div class="container">
+        <h2>Jaskirat Singh</h2>
+        <p class="title">Developer</p>
+        <p>Graduate student at University of Alberta</p>
+        <p>jaskira2@ualberta.ca</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/w3images/team2.jpg" alt="Tina" style="width:100%">
+      <div class="container">
+        <h2>Pamila Tina</h2>
+        <p class="title">Developer</p>
+        <p>Graduate student at University of Alberta</p>
+        <p>pviswana@ualberta.ca</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <img src="/w3images/team3.jpg" alt="Samarth" style="width:100%">
+      <div class="container">
+        <h2>Samarth Patel</h2>
+        <p class="title">Designer</p>
+        <p>Graduate student at University of Alberta</p>
+        <p>samarth3@ualberta.ca</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
