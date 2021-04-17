@@ -122,39 +122,46 @@ def train_model(X_train, Y_train, model_name):
     else:
         print("Provide the argument model_name from one of the supported models.")
 
-#Function that takes in 3 Arguments : X_test (contains all the features the model is trained on.) , Y_test (contains the ground truth values) and model_name (string argument representing a model)
+#Function that takes in 3 Arguments : X_test (contains all the features the model is tested on.) , Y_test (contains the ground truth values) and model_name (string argument representing a model)
 def evaluate_model(X_test, Y_test, model_name):
     scaler = preprocessing.StandardScaler().fit(X_test)
     X_test_transformed = scaler.transform(X_test)
+    score = 0;
     if model_name == 'SVM':
         filename = 'model_SVM.sav'
         loaded_model = joblib.load(filename)
         print("model_SVM Loaded")
-        print(loaded_model.score(X_test_transformed,Y_test))
+        score=loaded_model.score(X_test_transformed,Y_test)
+        print(score)
     elif model_name == 'SGD':
         filename = 'model_SGD.sav'
         loaded_model = joblib.load(filename)
         print("model_SGD Loaded")
-        print(loaded_model.score(X_test_transformed,Y_test))
+        score=loaded_model.score(X_test_transformed,Y_test)
+        print(score)
     elif model_name == 'RF':
         filename = 'model_RF.sav'
         loaded_model = joblib.load(filename)
         print("model_RF Loaded")
-        print(loaded_model.score(X_test_transformed,Y_test))
+        score=loaded_model.score(X_test_transformed,Y_test)
+        print(score)
     elif model_name == 'KNN':
         filename = 'model_KNN.sav'
         loaded_model = joblib.load(filename)
         print("mode_KNN Loaded")
-        print(loaded_model.score(X_test_transformed,Y_test))
+        score=loaded_model.score(X_test_transformed,Y_test)
+        print(score)
     elif model_name == 'GNB':
         filename = 'model_GNB.sav'
         loaded_model = joblib.load(filename)
         print("model_GNB Loaded")
-        print(loaded_model.score(X_test_transformed,Y_test))
+        score=loaded_model.score(X_test_transformed,Y_test)
+        print(score)
     else:
         print("Provide the argument model_name from one of the supported models.")
+    return score;
 
-#Function that takes in 2 Arguments : X-test_row (row on which the prediction is made), model_name (string argument repersenting a model) 
+#Function that takes in 2 Arguments : X-test_row (row on which the prediction is made), model_name (string argument representing a model) 
 def predict_result(X_test_row,model_name):
     result = 0;
     if model_name == 'SVM':
