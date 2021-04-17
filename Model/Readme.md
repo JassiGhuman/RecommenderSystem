@@ -18,6 +18,11 @@
   * X_test: contains the features the model is tested on
   * X_test: contains the ground truth values
   * model_name: string argument representing a model
+  * returns test score
 3. predict_result(): 2 Arguments
   * X_test_row: row on which the prediction is made
   * model_name: string argument representing a model
+  * returns result
+4. preprocess(): no arguments
+ * reads and pre_processes the data
+ * returns X_train, X_test,Y_train,Y_test
