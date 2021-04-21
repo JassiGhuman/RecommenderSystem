@@ -6,7 +6,7 @@ django.setup()
 import pandas as pd
 from catalog.models import RecordTable
 
-
+#Function to read the provided .csv files in dataset
 def read_csv(no_of_rows,is_random):
     dataset = "./expedia-hotel-recommendations/train.csv"
     if is_random == True:
@@ -15,7 +15,7 @@ def read_csv(no_of_rows,is_random):
         dataFrame = pd.read_csv(dataset, nrows=no_of_rows)
     return dataFrame
 
-
+#Function to process dataset 
 def process_data(dataFrame):
     feature_selection = ['site_name', 'user_location_region', 'is_package', 'srch_adults_cnt', 'srch_children_cnt','srch_destination_id', 'hotel_market', 'hotel_country', 'hotel_cluster']
     processed_data = pd.DataFrame(columns=feature_selection)
@@ -26,7 +26,8 @@ def process_data(dataFrame):
     Y = processed_data['hotel_cluster'].values
     print(processed_data.head());
     return X, Y;
-
+    
+#Function to populate SQLite database in django models
 def populate(data,N=10000):
     site_name = data['site_name']
     user_location_region = data['user_location_region']

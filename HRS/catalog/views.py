@@ -7,24 +7,20 @@ import datetime
 # view to render UI
 today = datetime.date.today()
 
-
+# Render the HTML template index.html with the data in the context variable.
 def index(request):
-    # Render the HTML template index.html with the data in the context variable.
     return render(request, 'index.html')
     
-    
+# Render the HTML template contact.html with the data in the context variable.  
 def contact(request):
-    # Render the HTML template contact.html with the data in the context variable.
     return render(request, 'contact.html')
 
-
+# Render the HTML template about.html with the data in the context variable.
 def about(request):
-    # Render the HTML template about.html with the data in the context variable.
     return render(request, 'about.html')
 
-
+# To populate the parameters for the user to provide input for retrieving the accuracy of the model
 def popdata(request):
-    # To populate the parameters for the user to provide input for retrieving the accuracy of the model
     data1 = RecordTable.objects.order_by('is_package').values('is_package').distinct()
     data2 = RecordTable.objects.order_by('user_location_region').values('user_location_region').distinct()
     data3 = RecordTable.objects.order_by('site_name').values('site_name').distinct()
@@ -47,9 +43,8 @@ def popdata(request):
     }
     return render(request, 'hotels.html', context)
 
-
+# retrieving data for charts and graphs
 def testdata(request):
-    # retrieving data for charts and graphs
     data1 = RecordTable.objects.order_by('user_location_region').values('user_location_region').distinct()
     data2 = RecordTable.objects.all().order_by('user_location_region')
     context = {
@@ -58,7 +53,7 @@ def testdata(request):
     }
     return render(request, 'visualize.html', context)
 
-
+# retrieving data from train data
 def traindata(request):
     if request.method == 'POST':
         site = request.POST.get('site')
@@ -77,7 +72,7 @@ def traindata(request):
     else:
         return render(request, 'hotels.html')
 
-
+# Predicting results by running 'RecSys.py'
 def predict_result(request, X_test_row=[6707, 2, 133, 0, 2, 0, 8215, 951, 208, 31], model_name='XGB'):
     input = request.POST.get('is_package')
     print('Inside method')
