@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
   <link rel="stylesheet" href="{% static 'css/about.css' %}">
- 
+  <link rel="stylesheet" href="{% static 'css/card.css' %}">
  
 {% block content %}
 <div class="container my-4">
@@ -31,7 +31,7 @@
               <option value="24">Site C</option>
               <option value="37">Site D</option>-->
               {% for entry in data3 %}
-              <option value="{{ entry.site_name }}">{{ entry.site_name }}</option>
+              <option value="{{ entry.site_name }}">Site {{ entry.site_name }}</option>
               {%endfor%}
             </select>
           </div>
@@ -39,12 +39,12 @@
             <label for="userloc">User Location</label>
             <select class="form-control" id="userloc" name="userloc">
               <option selected disabled="true">Select</option>
-              <option value="348">Location 1</option>
+              <!--<option value="348">Location 1</option>
               <option value="518">Location 2</option>
               <option value="548">Location 3</option>
-              <option value="64">Location 4</option>
+              <option value="64">Location 4</option>-->
               {% for entry in data2 %}
-              <option value="{{ entry.user_location_region }}">{{ entry.user_location_region }}</option>
+              <option value="{{ entry.user_location_region }}">Location {{ entry.user_location_region }}</option>
               {%endfor%}
             </select>
           </div>
@@ -52,21 +52,21 @@
             <label for="package">Is it a package</label>
             <select class="form-control" id="package" name="package">
               <option selected disabled="true">Select</option>
-              <option value="0">yes</option>
-              <option value="1">no</option>
-              {% for entry in data1 %}
+              <option value="0">Yes</option>
+              <option value="1">No</option>
+              <!--{% for entry in data1 %}
               <option value="{{ entry.is_package }}">{{ entry.is_package }}</option>
-              {%endfor%}
+              {%endfor%} -->
             </select>
           </div>
           <div class="form-group">
             <label for="adultcount">Number of Adults</label>
             <select class="form-control" id="adultcount" name="adultcount">
               <option selected disabled="true">Select</option>
-              <option value="1">1</option>
+              <!--<option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
-              <option value="4">4</option>
+              <option value="4">4</option>-->
               {% for entry in data4 %}
               <option value="{{ entry.srch_adults_cnt }}">{{ entry.srch_adults_cnt }}</option>
               {%endfor%}
@@ -76,11 +76,11 @@
             <label for="childcount">Number of Children</label>
             <select class="form-control" id="childcount" name="childcount">
               <option selected disabled="true">Select</option>
-              <option value="0">0</option>
+              <!--<option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
-              <option value="4">4</option>
+              <option value="4">4</option> -->
               {% for entry in data5 %}
               <option value="{{ entry.srch_children_cnt }}">{{ entry.srch_children_cnt }}</option>
               {%endfor%}
@@ -90,12 +90,12 @@
             <label for="destination">Destination</label>
             <select class="form-control" id="destination" name="destination">
               <option selected disabled="true">Select</option>
-              <option value="8250">Dest -1</option>
+              <!--<option value="8250">Dest -1</option>
               <option value="1385">Dest -2</option>
               <option value="8785">Dest -3</option>
-              <option value="1571">Dest -4</option>
+              <option value="1571">Dest -4</option> -->
               {% for entry in data6 %}
-              <option value="{{ entry.srch_destination_id }}">{{ entry.srch_destination_id }}</option>
+              <option value="{{ entry.srch_destination_id }}">Destination {{ entry.srch_destination_id }}</option>
               {%endfor%}
             </select>
           </div>
@@ -103,12 +103,12 @@
               <label for="market">Select market</label>
               <select class="form-control" id="market" name="market">
               <option selected disabled="true">Select</option>
-                <option value="628">Market -1</option>
+              <!--<option value="628">Market -1</option>
               <option value="191">Market -2</option>
               <option value="29">Market -3</option>
-              <option value="1776">Market -4</option>
+              <option value="1776">Market -4</option>-->
               {% for entry in data7 %}
-              <option value="{{ entry.hotel_market }}">{{ entry.hotel_market }}</option>
+              <option value="{{ entry.hotel_market }}">Market {{ entry.hotel_market }}</option>
               {%endfor%}
             </select>
           </div>
@@ -116,16 +116,16 @@
             <label for="country">Select Country</label>
             <select class="form-control" id="country" name="country">
               <option selected disabled="true">Select</option>
-              <option value="50">Country -1</option>
+              <!--<option value="50">Country -1</option>
               <option value="185">Country -2</option>
               <option value="151">Country -3</option>
-              <option value="105">Country -4</option>
+              <option value="105">Country -4</option> -->
               {% for entry in data8 %}
-              <option value="{{ entry.hotel_country }}">{{ entry.hotel_country }}</option>
+              <option value="{{ entry.hotel_country }}">Country {{ entry.hotel_country }}</option>
               {%endfor%}
             </select>
           </div>
-          <button type="submit" class="btn btn-primary">Retrieve Recommended Hotels</button>
+          <button type="submit" class="btn btn-primary">Get Recommendation</button>
         </div>
     </div>
   </form>
@@ -135,12 +135,29 @@
 <div class="jumbotron jumbotron-fluid my-4">
   <h2>    Result:</h2>
   <div class="w-100 p-3">
-    <textarea class="form-control" style="min-width: 100%" style="min-height: 100%">
+    <textarea id="res " class="form-control" style="min-width: 100%" style="min-height: 100%">
   {{ result }}
     </textarea>
+	
   </div>
 
 </div>
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <h3>Hotel 1</h3>
+	  <div>
+		{% load static %} <img src="{% static 'images/homepage.jpeg' %}" alt="HotelImage" />
+	</div>
+      <p>site 1</p>
+      <p>country 1</p>
+	  <button type="button" onclick="myFunction()">book</button>
+	  <div>&nbsp;</div><div>&nbsp;
+    </div>
+  </div>
+  </div><div>&nbsp;</div></div><div>&nbsp;</div>
+
 
 {% endblock %}
 <script>

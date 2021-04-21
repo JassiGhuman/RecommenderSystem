@@ -26,8 +26,7 @@ def about(request):
 def popdata(request):
     # To populate the parameters for the user to provide input for retrieving the accuracy of the model
     data1 = RecordTable.objects.order_by('is_package').values('is_package').distinct()
-    data2 = RecordTable.objects.order_by('user_location_region').values('user_location_region')\
-        .distinct()
+    data2 = RecordTable.objects.order_by('user_location_region').values('user_location_region').distinct()
     data3 = RecordTable.objects.order_by('site_name').values('site_name').distinct()
     data4 = RecordTable.objects.order_by('srch_adults_cnt').values('srch_adults_cnt').distinct()
     data5 = RecordTable.objects.order_by('srch_children_cnt').values('srch_children_cnt').distinct()

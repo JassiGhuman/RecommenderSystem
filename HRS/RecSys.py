@@ -26,7 +26,7 @@ def process_data(dataFrame):
         processed_data[column] = processed_data[column].astype(str).astype(int);
     X = processed_data
     Y = processed_data['hotel_cluster'].values
-    print(processed_data.head());
+    #print(processed_data.head());
     return X, Y;
 
 
@@ -41,7 +41,7 @@ def trian_xgboost(X_train, Y_train, max_dep = 5, learn_rate = 0.01):
     #print(modelXGB.score(X_train,Y_train));
     filename = 'model_XGB.sav'
     joblib.dump(modelXGB,filename)
-    print("model_XGB saved")
+    #print("model_XGB saved")
 
 
 
@@ -129,10 +129,10 @@ def predict_result(X_test_row,model_name = 'XGB'):
     elif model_name == 'XGB':
         filename = 'model_XGB.sav'
         loaded_model = joblib.load(filename)
-        print("model_XGB Loaded")
+        #print("model_XGB Loaded")
         result = loaded_model.predict(X_test_row)
-        print("Prediction:")
-        print(result)
+        #print("Prediction:")
+        #print(result)
     else:
 
         print("Provide the argument model_name from one of the supported models.")
@@ -181,17 +181,17 @@ def main():
 
     #print(X_test_row);
     actual_hotel = Y_test[1]
-    print("**********************************training**************************************************")
-    train_model(X_train, Y_train, 'SVM')
-    trian_xgboost(X_train, Y_train)
-    print("*************************************evaluating***********************************************")
-    evaluate_model(X_test, Y_test, 'GNB')
-    print("***************************************predicting*********************************************")
+    #print("**********************************training**************************************************")
+    #train_model(X_train, Y_train, 'SVM')
+    #trian_xgboost(X_train, Y_train)
+    #print("*************************************evaluating***********************************************")
+    #evaluate_model(X_test, Y_test, 'XGB')
+    #print("***************************************predicting*********************************************")
     result = predict_result(X_test_row)
-    print("****************************************results********************************************")
-    print("Result:", result)
-    print("Actual:", actual_hotel)
-    #return result, actual_hotel
+    #print("****************************************results********************************************")
+    print(",Result:", result)
+    print(",Actual:", actual_hotel)
+    return result, actual_hotel
 
 if __name__ == "__main__":
     main()
